@@ -1,0 +1,14 @@
+$dark-text: #000;
+$mid-text: #464242;
+$light-text: #fff;
+
+$lit-background: #F5F5F5;
+$lightbox-bg: rgba(0,0,0,0.9);
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}

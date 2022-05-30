@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #F5F5F5;
+  color: #000;
+  height: 100vh;
+  line-height: 1.2;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+}
+
+header {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+#artist-name {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+#logo-icon {
+  width: 8vw;
+  min-width: 30px;
+  max-width: 57px;
+}
+/*# sourceMappingURL=mail.css.map */

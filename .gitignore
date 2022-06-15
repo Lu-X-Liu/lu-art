@@ -1,2 +1,5 @@
 
 .DS_Store
+node_modules
+imgs/.DS_Store
+imgs/icons/.DS_Store

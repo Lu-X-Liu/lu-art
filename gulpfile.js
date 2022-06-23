@@ -1,6 +1,6 @@
 // list dependences
-const { src, dest, watch, series } = require('gulp');
-const sass = require('gulp-sass');
+const { src, dest, watch, series, lastRun } = require('gulp');
+const sass = require('gulp-sass')(require('sass'));
 const prefix = require('gulp-autoprefixer');
 const cleanCss = require('gulp-clean-css');
 const terser = require('gulp-terser');
@@ -12,7 +12,9 @@ const browserSync = require('browser-sync').create();
 //create functions
 //scss
 function scssTask() {
-    return src('src/scss/*.scss', {sourcemaps: true})
+    return src('src/scss/*.scss', 
+        [{sourcemaps: true}, 
+         {since: lastRun(scssTask)}])
       .pipe(sass().on('error', sass.logError))
       .pipe(prefix('last 2 versions'))
       .pipe(cleanCss())
@@ -29,7 +31,7 @@ function js() {
 }
 // optimize images
 function optimizeImgs() {
-    return src('src/imgs/**/*.{jpg,png,svg}')
+    return src('src/imgs/**/*.{jpg,png,svg}', {since: lastRun(optimizeImgs)})
       .pipe(imagemin([
         imagemin.mozjpeg({quality:80, progressive: true}),
         imagemin.optipng({optimizationLevel: 2})
@@ -38,7 +40,7 @@ function optimizeImgs() {
 }
 //create webp
 function webpImgs() {
-    return src('dist/imgs/**/*/{jpg,png}')
+    return src('dist/imgs/**/*/{jpg,png}', {since: lastRun(webpImgs)})
     .pipe(webp())
     .pipe(dest('dist/imgs'));
 }

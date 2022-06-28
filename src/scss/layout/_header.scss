@@ -1,0 +1,49 @@
+@use '../abstracts/functions' as f;
+
+.header {
+    padding-top: 1rem; 
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;   
+    align-items: baseline; 
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid black;  
+    &__logo {
+        width: f.rem(28);
+        max-width: f.rem(57);
+    }
+    &__artist {
+        font-size: f.rem(19);
+        //font-weight: 500;
+    }
+    &__list {
+        display: none;
+    }
+    &__item {
+        display:inline-block;
+    }
+}
+
+.menu {
+    &__bar {
+        display: block;
+        width: f.rem(25);
+        height: f.rem(2.5);
+        margin: f.rem(5.5) auto 0;
+        transition: all 0.3s ease-in-out;
+        background-color: #000;
+    }
+    &--active {
+        .menu__bar:nth-child(2) {
+            opacity: 0;
+        }
+        .menu__bar:nth-child(1) {
+            transform: translateY(f.rem(8)) rotate(45deg);
+        }
+        .menu__bar:nth-child(3) {
+            transform: translateY(f.rem(-8)) rotate(-45deg);
+        }
+    }
+}

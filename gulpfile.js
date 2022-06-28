@@ -66,3 +66,5 @@ exports.default = series(
     webpImgs,
     watchTask
 );
+
+exports.watch = watchTask;

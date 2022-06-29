@@ -1,0 +1,32 @@
+@use '../abstracts/functions' as f;
+@use '../abstracts/mixins' as m;
+@use '../abstracts/variables' as v;
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-bottom: 1.5rem;
+    
+    &__frame {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid black;  
+        padding-top: 0.5rem;
+    }
+    &__link {
+        height:fit-content;
+        margin-left: 0.75rem;
+    }
+    &__copy-right {
+        font-size: f.rem(10);
+        font-weight: 500;
+    }
+}
+
+.fa-brands {
+    font-size: f.rem(25);
+}
+

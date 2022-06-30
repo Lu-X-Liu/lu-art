@@ -40,9 +40,9 @@ function optimizeImgs() {
 }
 //create webp
 function webpImgs() {
-    return src('dist/imgs/**/*/{jpg,png}', {since: lastRun(webpImgs)})
+    return src('dist/imgs/**/*.{jpg}', {since: lastRun(webpImgs)})
     .pipe(webp())
-    .pipe(dest('dist/imgs'));
+    .pipe(dest('dist/imgs/webp'));
 }
 //watchtask
 function watchTask() {

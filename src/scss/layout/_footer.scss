@@ -8,6 +8,7 @@
     left: 0;
     width: 100%;
     padding-bottom: 1.5rem;
+    background-color: v.$body-bg-color;
     
     &__frame {
         display: flex;
@@ -21,7 +22,7 @@
         margin-left: 0.75rem;
     }
     &__copy-right {
-        font-size: f.rem(10);
+        font-size: f.rem(11);
         font-weight: 500;
     }
 }

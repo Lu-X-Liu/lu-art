@@ -1,10 +1,17 @@
 @use '../abstracts/variables' as v;
+@use '../abstracts/functions' as f;
 
 body {
     background-color: v.$body-bg-color;
 }
 
 .container {
-    width: 80vw;
+    width: 86vw;
     margin: 0 auto;
+}
+
+.main {
+    position: relative;
+    top: calc(f.rem(54) + 7vw);
+    padding-bottom: calc(f.rem(59.25) + 7vw);
 }

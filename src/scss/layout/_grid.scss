@@ -1,0 +1,17 @@
+@use '../abstracts/functions' as f;
+
+
+.thumbnails {
+    width: 100%;
+    display: grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-template-rows: auto auto;
+    gap: 6vw;
+
+    &__item {
+        height: f.rem(125);
+        width: f.rem(125);
+        background-color: bisque;
+        justify-self: center;
+    }
+}

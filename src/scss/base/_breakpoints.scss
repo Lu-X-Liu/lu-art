@@ -3,5 +3,7 @@
 $breakpoints-up: (
     'medium': f.em(700),
     'large': f.em(900),
-    'xlarge': f.em(1440)
+    'xlarge': f.em(1440),
+
+    'thumbnail-3cols': f.em(750)
 );

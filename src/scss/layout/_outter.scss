@@ -1,5 +1,6 @@
 @use '../abstracts/variables' as v;
 @use '../abstracts/functions' as f;
+@use '../abstracts/mixins' as m;
 
 body {
     background-color: v.$body-bg-color;
@@ -9,6 +10,10 @@ body {
     width: 86vw;
     max-width: f.rem(960);
     margin: 0 auto;
+
+    // @include m.breakpoint(xlarge) {
+    //     max-width: f.rem(1100);   
+    // }
 }
 
 .main {

@@ -18,12 +18,35 @@
     align-items: baseline; 
     padding-bottom: 0.5rem;
     border-bottom: 1px solid black;  
+
     &__logo {
-        width: f.rem(28);
-        max-width: f.rem(57);
+            display: block;
+            width: f.rem(30);
+            max-width: f.rem(57);
+
+            @include m.breakpoint(medium) {
+                width: 6vw;
+                margin-left: f.rem(-39.27);
+            }
+
+            @include m.breakpoint(large) {
+                margin-left: f.rem(14.955);
+            }
+
+            @include m.breakpoint(xlarge) {
+                width: f.rem(57);
+            }
+
+            &-icon {
+                width: 100%;
+            }
     }
+
     &__artist {
         font-size: f.rem(19);
+        @include m.breakpoint(medium) {
+            order:-1;
+        }
     }
     &__list {
         position: fixed;

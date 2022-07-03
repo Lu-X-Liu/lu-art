@@ -22,7 +22,7 @@
     &__logo {
             display: block;
             width: f.rem(30);
-            max-width: f.rem(57);
+            max-width: f.rem(54);
 
             @include m.breakpoint(medium) {
                 width: 6vw;
@@ -34,7 +34,7 @@
             }
 
             @include m.breakpoint(xlarge) {
-                width: f.rem(57);
+                width: f.rem(54);
             }
 
             &-icon {
@@ -50,13 +50,14 @@
     }
     &__list {
         position: fixed;
-        top: f.rem(54);
+        top: f.rem(65);
         left: -100%;
         background-color: v.$body-bg-color;
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 86%;
+        // padding-bottom: 1.5rem;
         transition: 0.3s;
         &--active {
             left: 7%;
@@ -73,6 +74,12 @@
         border-bottom: 1px solid #919090;
         width: 100%;
         text-align: center;
+        &:first-child {
+            border-top: 1px solid black; 
+            @include m.breakpoint(large) {
+                border: none;
+            } 
+        }
         @include m.breakpoint(large) {
             display:inline-block;
             margin-left: 0.75rem;
@@ -83,10 +90,14 @@
     &__link {
         display: block;
         font-size: 0.75rem;
-        font-weight: medium;
+        font-weight: 500;
         width: 100%;
         height:100%;
-        padding: 0.5rem 0;
+        padding: 1rem 0;
+         &:hover {
+        background-color: #000;
+        color: v.$body-bg-color;
+        }
     }
 }
 
@@ -98,7 +109,7 @@
         display: block;
         width: f.rem(25);
         height: f.rem(2.5);
-        margin: f.rem(5.5) auto 0;
+        margin: f.rem(6) auto 0;
         transition: all 0.3s ease-in-out;
         background-color: #000;
     }

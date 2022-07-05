@@ -50,14 +50,13 @@
     }
     &__list {
         position: fixed;
-        top: f.rem(65);
+        top: f.rem(54);
         left: -100%;
         background-color: v.$body-bg-color;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 86%;
-        // padding-bottom: 1.5rem;
+        width: 86.125%;
         transition: 0.3s;
         &--active {
             left: 7%;
@@ -75,16 +74,17 @@
         width: 100%;
         text-align: center;
         &:first-child {
-            border-top: 1px solid black; 
+            border-top: 1px solid black;
             @include m.breakpoint(large) {
                 border: none;
-            } 
+            }
         }
+
         @include m.breakpoint(large) {
             display:inline-block;
             margin-left: 0.75rem;
-            border: none;
             width: unset;
+            border: none;
         }        
     }
     &__link {
@@ -94,9 +94,15 @@
         width: 100%;
         height:100%;
         padding: 1rem 0;
-         &:hover {
-        background-color: #000;
-        color: v.$body-bg-color;
+         &:hover {         
+            @include m.breakpoint-down(medium) {
+                background-color: #000;
+                color: v.$body-bg-color;
+            }  
+            @include m.breakpoint(large) {
+                border-bottom: 2px solid rgb(68, 68, 68);
+                padding-bottom: 0.4rem;
+            }      
         }
     }
 }

@@ -4,7 +4,9 @@ const sass = require('gulp-sass')(require('sass'));
 const prefix = require('gulp-autoprefixer');
 const cleanCss = require('gulp-clean-css');
 const terser = require('gulp-terser');
-const imagemin = require('gulp-imagemin');
+const imgResize = require('gulp-image-resize'); //resize images, need to install GraphicsMagick or ImageMagick
+                                                // on your system and properly set up in your PATH.
+const imagemin = require('gulp-imagemin');      
 const webp = require('gulp-webp');
 const rename = require('gulp-rename');
 const browserSync = require('browser-sync').create();
@@ -36,13 +38,15 @@ function optimizeImgs() {
         imagemin.mozjpeg({quality:80, progressive: true}),
         imagemin.optipng({optimizationLevel: 2})
       ]))
-      .pipe(dest('dist/imgs'));
+      .pipe(dest('dist/imgs'))
+      .pipe(browserSync.stream());
 }
 //create webp
 function webpImgs() {
-    return src('dist/imgs/**/*.{jpg}', {since: lastRun(webpImgs)})
+    return src('dist/imgs/**/*.jpg', {since: lastRun(webpImgs)})
     .pipe(webp())
-    .pipe(dest('dist/imgs/webp'));
+    .pipe(dest('dist/imgs/webp'))
+    .pipe(browserSync.stream());
 }
 //watchtask
 function watchTask() {
@@ -55,7 +59,7 @@ function watchTask() {
     watch('./**/*.html').on('change', browserSync.reload);
     watch('./src/js/**/*.js', js);
     watch('./src/imgs/**/*.{jpg,png.svg}', optimizeImgs);
-    watch('./dist/imgs/**/*.{jpg,png.svg}', webpImgs);
+    watch('./dist/imgs/**/*.jpg', webpImgs);
 }
 
 //default gulp

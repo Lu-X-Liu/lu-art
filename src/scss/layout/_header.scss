@@ -61,6 +61,11 @@
         &--active {
             left: 7%;
         }
+
+        @include m.breakpoint(medium) {
+        top: calc(f.rem(49.5) + calc(6vw - f.rem(30)));  
+        }
+
         @include m.breakpoint(large) {
             display: block;
             position: relative;
@@ -101,7 +106,7 @@
                 color: v.$body-bg-color;
             }  
             @include m.breakpoint(large) {
-                border-bottom: 2px solid rgb(68, 68, 68);
+                border-bottom: 2px solid rgb(88, 88, 88);
                 padding-bottom: 0.4rem;
             }      
         }

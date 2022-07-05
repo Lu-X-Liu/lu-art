@@ -22,7 +22,7 @@
         min-width: f.rem(150);
         min-height: f.rem(150);
         max-width: f.rem(300);
-        max-height: f.rem(300);
+        max-height: calc(f.rem(300) + 1rem);
         width: 100%;
         height: 100%;
         justify-self: center;

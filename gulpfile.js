@@ -31,15 +31,28 @@ function js() {
       .pipe(browserSync.stream());
 }
 
-function resizeImg () {
-    return src('scr/imgs/thumbnails/t-large/*.jpg', {since: lastRun(optimizeImgs)})
-    .pipe(imgResize({
-        width: 200,
-        height: 200,
-    }))
-    .pipe(dest('dist/imgs/thumbnails/t-small'))
-    .pipe(browserSync.stream());
+// resize images
+const sizes = new Map([
+    ['small', 400],
+    ['medium', 500],
+    ['large', 600]
+]);
+
+function resizeThumbnails (cb) {
+    sizes.forEach(function (size, key) {
+        src('src/imgs/thumbnails/*.jpg', {since: lastRun(optimizeImgs)})
+        .pipe(imgResize({
+            width: size
+        }))
+        .pipe(rename(function (path) {
+            path.basename += '_' + key;
+        }))
+        .pipe(dest('dist/imgs/thumbnails/t-' + key + '/' ))
+        .pipe(browserSync.stream());
+    });
+    cb();
 }
+
 // optimize images
 function optimizeImgs() {
     return src('src/imgs/**/*.{jpg,png,svg}', {since: lastRun(optimizeImgs)})
@@ -67,16 +80,18 @@ function watchTask() {
     watch('./src/scss/**/*.scss', scssTask);
     watch('./**/*.html').on('change', browserSync.reload);
     watch('./src/js/**/*.js', js);
-    watch('./src/imgs/**/*.{jpg,png.svg}', optimizeImgs);
-    watch('./dist/imgs/**/*.jpg', webpImgs);
+    watch('./src/imgs/test/*.jpg', resizeThumbnails);
+    // watch('./src/imgs/**/*.{jpg,png.svg}', optimizeImgs);
+    // watch('./dist/imgs/**/*.jpg', webpImgs);
 }
 
 //default gulp
 exports.default = series(
     scssTask,
     js,
-    optimizeImgs,
-    webpImgs,
+    resizeThumbnails,
+    // optimizeImgs,
+    // webpImgs,
     watchTask
 );
 

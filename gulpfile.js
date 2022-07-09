@@ -4,8 +4,7 @@ const sass = require('gulp-sass')(require('sass'));
 const prefix = require('gulp-autoprefixer');
 const cleanCss = require('gulp-clean-css');
 const terser = require('gulp-terser');
-const imgResize = require('gulp-image-resize'); //resize images, need to install GraphicsMagick or ImageMagick
-                                                // on your system and properly set up in your PATH.
+const imgResize = require('gulp-image-resize'); 
 const imagemin = require('gulp-imagemin');      
 const webp = require('gulp-webp');
 const rename = require('gulp-rename');
@@ -30,6 +29,16 @@ function js() {
       .pipe(rename({extname: '.min.js'}))
       .pipe(dest('dist/js', {sourcemaps: '.'}))
       .pipe(browserSync.stream());
+}
+
+function resizeImg () {
+    return src('scr/imgs/thumbnails/t-large/*.jpg', {since: lastRun(optimizeImgs)})
+    .pipe(imgResize({
+        width: 200,
+        height: 200,
+    }))
+    .pipe(dest('dist/imgs/thumbnails/t-small'))
+    .pipe(browserSync.stream());
 }
 // optimize images
 function optimizeImgs() {

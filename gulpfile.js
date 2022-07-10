@@ -40,7 +40,7 @@ const sizes = new Map([
 
 function resizeThumbnails (cb) {
     sizes.forEach(function (size, key) {
-        src('src/imgs/thumbnails/*.jpg', {since: lastRun(optimizeImgs)})
+        src('src/imgs/thumbnails/*.jpg', {since: lastRun(resizeThumbnails)})
         .pipe(imgResize({
             width: size
         }))
@@ -53,22 +53,33 @@ function resizeThumbnails (cb) {
     cb();
 }
 
+//resize full imgs
+// const fullImgs = new Map([
+
+// ]);
+
 // optimize images
-function optimizeImgs() {
-    return src('src/imgs/**/*.{jpg,png,svg}', {since: lastRun(optimizeImgs)})
+function optimizeImgs(cb) {
+    sizes.forEach(function (size, key ) { 
+      src('dist/imgs/thumbnails/' + 't-' + key + '/*.jpg', {since: lastRun(optimizeImgs)})
       .pipe(imagemin([
         imagemin.mozjpeg({quality:80, progressive: true}),
         imagemin.optipng({optimizationLevel: 2})
       ]))
-      .pipe(dest('dist/imgs'))
+      .pipe(dest('dist/imgs/thumbnails/' + 't-' + key + '/'))
       .pipe(browserSync.stream());
+    });
+    cb();  
 }
 //create webp
-function webpImgs() {
-    return src('dist/imgs/**/*.jpg', {since: lastRun(webpImgs)})
-    .pipe(webp())
-    .pipe(dest('dist/imgs/webp'))
-    .pipe(browserSync.stream());
+function webpImgs(cb) {
+    sizes.forEach(function (sizes, key) {
+        src('dist/imgs/thumbnails/' + 't-' + key + '/*.jpg', {since: lastRun(webpImgs)})
+        .pipe(webp())
+        .pipe(dest('dist/imgs/thumbnails/t-webp/' + 'w-' + key + '/'))
+        .pipe(browserSync.stream());        
+    })
+    cb();
 }
 //watchtask
 function watchTask() {
@@ -81,8 +92,8 @@ function watchTask() {
     watch('./**/*.html').on('change', browserSync.reload);
     watch('./src/js/**/*.js', js);
     watch('./src/imgs/test/*.jpg', resizeThumbnails);
-    // watch('./src/imgs/**/*.{jpg,png.svg}', optimizeImgs);
-    // watch('./dist/imgs/**/*.jpg', webpImgs);
+    watch('./src/imgs/**/*.{jpg,png.svg}', optimizeImgs);
+    watch('./dist/imgs/**/*.jpg', webpImgs);
 }
 
 //default gulp
@@ -90,8 +101,8 @@ exports.default = series(
     scssTask,
     js,
     resizeThumbnails,
-    // optimizeImgs,
-    // webpImgs,
+    optimizeImgs,
+    webpImgs,
     watchTask
 );
 

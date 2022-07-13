@@ -1,0 +1,75 @@
+@use '../abstracts/functions' as f;
+
+.light-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 100%;
+    padding-top: calc(f.rem(30) + 5vh);
+    //padding-bottom: calc(f.rem(30) + 5vh);
+    background-color: rgba(0, 0, 0, 0.9);
+    display: grid;
+    justify-items: center;
+    z-index: 49;
+    overflow: auto;
+
+    & [data-img-icon] {
+        fill: white;
+    }
+    
+    &__wrapper {
+        height: 70%;
+        width: 70%;
+    }
+    &__img-display {
+        display: block;
+    }
+    &__control {
+        padding-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.display-img-info {
+    p {
+        display: block;
+        padding-top: 0.25rem;
+        color: white;
+        font-size: f.em(13);
+    }
+    &__title {
+        font-weight: 500;
+        font-size: f.em(15);
+    }
+}
+
+.control-btns {
+    padding-top: 0.5rem;
+    width: 35%;
+    display: flex;
+    justify-content: space-between;
+
+    &__cross-hair,
+    &__left,
+    &__right,
+    &__cross-hair:focus,
+    &__left:focus,
+    &__right:focus
+     {
+        border: none;
+        height: f.rem(24);
+    }
+
+    &__cross-hair-wrapper {
+        display: flex;
+        justify-content: flex-end; 
+        margin-bottom: 5vh;
+        padding-top: 8%;
+    }
+
+    &__right-icon {
+        transform: rotate(180deg);
+    }
+}

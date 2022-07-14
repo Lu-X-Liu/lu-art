@@ -3,7 +3,7 @@
 @use '../abstracts/variables' as v;
 
 .header {
-    padding-top: 1rem; 
+    padding-top: 0.75rem; 
     background-color: v.$body-bg-color;
     position: fixed;
     top: 0;
@@ -18,11 +18,16 @@
     align-items: baseline; 
     padding-bottom: 0.5rem;
     border-bottom: 1px solid black;  
+    max-height: f.rem(38);
+
+    @include m.breakpoint(medium) {
+        align-items: center; 
+    }
 
     &__logo {
             display: block;
             width: f.rem(30);
-            max-width: f.rem(54);
+            max-width: f.rem(42);
 
             @include m.breakpoint(medium) {
                 width: 6vw;
@@ -34,7 +39,7 @@
             }
 
             @include m.breakpoint(xlarge) {
-                width: f.rem(54);
+                width: f.rem(42);
             }
 
             &-icon {
@@ -43,7 +48,7 @@
     }
 
     &__artist {
-        font-size: f.rem(19);
+        font-size: f.rem(18);
         @include m.breakpoint(medium) {
             order:-1;
         }
@@ -57,7 +62,7 @@
         flex-direction: column;
         align-items: center;
         width: 86.125%;
-        transition: 0.3s;
+        // transition: 0.3s;
         &--active {
             left: 7%;
         }
@@ -94,12 +99,12 @@
     }
     &__link {
         display: block;
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         font-weight: 500;
         width: 100%;
         height:100%;
-        padding: 1rem 0;
-        transition: all 0.2s ease-in-out;
+        padding: 0.8rem 0;
+        // transition: all 0.2s ease-in-out;
          &:hover {         
             @include m.breakpoint-down(medium) {
                 background-color: #000;
@@ -124,6 +129,9 @@
         margin: f.rem(6) auto 0;
         transition: all 0.3s ease-in-out;
         background-color: #000;
+    }
+    &__bar:first-child {
+        margin-top: 0;
     }
     &--active {
         .menu__bar:nth-child(2) {

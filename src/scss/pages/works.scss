@@ -1,4 +1,5 @@
 @use '../abstracts/functions' as f;
+@use '../abstracts/mixins' as m;
 
 .light-box {
     position: fixed;
@@ -7,32 +8,70 @@
     min-width: 100%;
     height: 100%;
     padding-top: calc(f.rem(30) + 5vh);
-    //padding-bottom: calc(f.rem(30) + 5vh);
     background-color: rgba(0, 0, 0, 0.9);
     display: grid;
     justify-items: center;
     z-index: 49;
     overflow: auto;
 
+    @media(min-width: 370px) {
+        padding-bottom: calc(f.rem(30) + 5vh);        
+    }
+
+
     & [data-img-icon] {
         fill: white;
     }
     
     &__wrapper {
-        height: 70%;
-        width: 70%;
+        max-width: 80%;
+        @media (max-width: 370px) {
+            width: 70%;
+        }
+        display: grid;
+        grid-template-areas:
+            "cross cross cross"
+            ". . ."
+            "img img img"
+            "info left right"
+            ". . . ";
+        grid-template-rows: auto minmax(1.5rem, 1fr) auto auto minmax(1.5rem, 2fr);
+        grid-template-columns: auto repeat(2, 17%);
+
+        @include m.breakpoint(large) {
+            grid-template-areas: 
+                "cross cross cross"
+                ".... img ...."
+                "left img right"
+                ".... img info";
+            grid-template-rows: f.rem(55) repeat(2, 1fr) max-content;
+            grid-template-columns:1fr 3fr 1fr;
+            column-gap: 2rem;
+            row-gap: 1rem;
+        }
     }
     &__img-display {
         display: block;
-    }
-    &__control {
-        padding-top: 2rem;
-        display: flex;
-        justify-content: space-between;
+        grid-area: img;
+        justify-self: center;  
+        max-height: 70vh;    
+        @include m.breakpoint(large) {
+            // height: 65vh;
+            align-self: end;
+        }
     }
 }
 
-.display-img-info {
+.display-info {
+        grid-area: info;
+        padding-top: 1.5rem;
+        @include m.breakpoint(medium) {
+            padding-top: 2rem;
+        }
+        @include m.breakpoint(large) {
+            padding-top: 0;
+        }
+
     p {
         display: block;
         padding-top: 0.25rem;
@@ -45,11 +84,7 @@
     }
 }
 
-.control-btns {
-    padding-top: 0.5rem;
-    width: 35%;
-    display: flex;
-    justify-content: space-between;
+.display-btn {
 
     &__cross-hair,
     &__left,
@@ -65,11 +100,33 @@
     &__cross-hair-wrapper {
         display: flex;
         justify-content: flex-end; 
-        margin-bottom: 5vh;
-        padding-top: 8%;
+        padding-top: 5%;
+        grid-area: cross;
+        @include m.breakpoint(large) {
+            padding-top: 2%;  
+        }
+    }
+
+    &__left {
+        grid-area: left;
+        justify-self: start;
+    }
+    
+
+    &__right {
+        grid-area: right;
+        justify-self: end;
     }
 
     &__right-icon {
         transform: rotate(180deg);
+    }
+
+    &__left,
+    &__right {
+        padding-top: 1.5rem;
+        @include m.breakpoint(medium) {
+            padding-top: 2rem;
+        }
     }
 }

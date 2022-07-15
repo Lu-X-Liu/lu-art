@@ -1,3 +1,4 @@
+@use '../abstracts/variables' as v;
 @use '../abstracts/functions' as f;
 @use'../abstracts/mixins' as m;
 
@@ -26,6 +27,12 @@
         width: 100%;
         height: 100%;
         justify-self: center;
+        transition: v.$transition;
+
+        &:hover{
+            opacity: v.$opacity-I;
+            transform: scale(1.01);
+        }
     }
     &__title {
         display: block;

@@ -1,3 +1,4 @@
+@use '../abstracts/variables' as v;
 @use '../abstracts/functions' as f;
 @use '../abstracts/mixins' as m;
 
@@ -9,18 +10,27 @@
     height: 100%;
     padding-top: calc(f.rem(30) + 5vh);
     background-color: rgba(0, 0, 0, 0.9);
-    display: grid;
-    justify-items: center;
+    display: flex;
+    justify-content: center;
     z-index: 49;
     overflow: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: v.$transition;
 
     @media(min-width: 370px) {
         padding-bottom: calc(f.rem(30) + 5vh);        
     }
 
+    &.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
 
     & [data-img-icon] {
-        fill: white;
+        color: white;
+        display: block;
     }
     
     &__wrapper {
@@ -64,12 +74,12 @@
 
 .display-info {
         grid-area: info;
-        padding-top: 1.5rem;
+        padding: 1.5rem 0;
         @include m.breakpoint(medium) {
             padding-top: 2rem;
         }
         @include m.breakpoint(large) {
-            padding-top: 0;
+            padding: 0;
         }
 
     p {
@@ -85,17 +95,13 @@
 }
 
 .display-btn {
-
-    &__cross-hair,
-    &__left,
-    &__right,
-    &__cross-hair:focus,
-    &__left:focus,
-    &__right:focus
-     {
         border: none;
         height: f.rem(24);
-    }
+        transition: v.$transition;
+
+        &:focus {
+            outline: none;
+        }
 
     &__cross-hair-wrapper {
         display: flex;
@@ -107,15 +113,30 @@
         }
     }
 
+    &__cross-hair:hover {
+        opacity: v.$opacity-II;
+    }
+
     &__left {
         grid-area: left;
         justify-self: start;
+        
+        &:hover,
+        &:focus {
+            transform: translateX(f.rem(-5));
+            opacity: v.$opacity-I;
+        }
     }
-    
 
     &__right {
         grid-area: right;
         justify-self: end;
+        
+        &:hover,
+        &:focus {
+            transform: translateX(f.rem(5));
+            opacity: v.$opacity-I;
+        }
     }
 
     &__right-icon {
@@ -123,10 +144,17 @@
     }
 
     &__left,
-    &__right {
-        padding-top: 1.5rem;
+    &__right {     
+        margin-top: 1.5rem;    
+        height: f.rem(32);
+        width: f.rem(26);
+        display: grid;
+        place-items: center;
+        background-color: rgb(122, 122, 122);
+        border-radius: 2px;
         @include m.breakpoint(medium) {
-            padding-top: 2rem;
+            margin-top: 2rem;
         }
+
     }
 }

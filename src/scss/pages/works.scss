@@ -126,6 +126,11 @@
             transform: translateX(f.rem(-5));
             opacity: v.$opacity-I;
         }
+
+        &.inactive {
+            opacity: 0;
+            pointer-events: none;
+        }
     }
 
     &__right {
@@ -136,6 +141,11 @@
         &:focus {
             transform: translateX(f.rem(5));
             opacity: v.$opacity-I;
+        }
+
+        &.inactive {
+            opacity: 0;
+            pointer-events: none;
         }
     }
 

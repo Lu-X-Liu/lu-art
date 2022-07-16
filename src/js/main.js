@@ -44,7 +44,26 @@ function setActiveImg(img) {
     displayImg.alt = img.alt.replace(' Thumbnail Image', '');
     
     activeImgIndex = thumbImgsArr.indexOf(img);
+    switch (activeImgIndex) {
+        case 0: 
+            leftArrow.classList.add('inactive');
+            rightArrow.classList.remove('inactive');
+            break;
+        case lastImgIndex:
+            rightArrow.classList.add('inactive');
+            leftArrow.classList.remove('inactive');
+            break;
+        default:
+            arrowBtns.forEach(btn => {
+                btn.classList.remove('inactive');    
+                removeBtnFocus(btn);          
+            });
+    }
 };
+
+function removeBtnFocus(btn) {
+    btn.blur();
+}
 
 function unsetActiveImg() {
     displayImg.srcset = '';
@@ -87,3 +106,9 @@ arrowBtns.forEach(btn => {
     })
 });
 
+window.addEventListener('keydown', (e) => {
+   if (e.key.includes('Right') || e.key.includes('Left')) {
+       e.preventDefault();
+       transitionSlideHandler(e.key.toLocaleLowerCase());
+   };
+})

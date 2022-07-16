@@ -35,9 +35,6 @@
     
     &__wrapper {
         max-width: 80%;
-        @media (max-width: 370px) {
-            width: 70%;
-        }
         display: grid;
         grid-template-areas:
             "cross cross cross"
@@ -45,7 +42,7 @@
             "img img img"
             "info left right"
             ". . . ";
-        grid-template-rows: auto minmax(1.5rem, 1fr) auto auto minmax(1.5rem, 2fr);
+        grid-template-rows: auto minmax(1.5rem, 1.5fr) auto auto minmax(1.5rem, 2fr);
         grid-template-columns: auto repeat(2, 17%);
 
         @include m.breakpoint(large) {
@@ -55,7 +52,7 @@
                 "left img right"
                 ".... img info";
             grid-template-rows: f.rem(55) repeat(2, 1fr) max-content;
-            grid-template-columns:1fr 3fr 1fr;
+            grid-template-columns:1fr 3.5fr 1fr;
             column-gap: 2rem;
             row-gap: 1rem;
         }
@@ -64,10 +61,16 @@
         display: block;
         grid-area: img;
         justify-self: center;  
-        max-height: 70vh;    
+        max-height: 75vh;  
+
+        @include m.breakpoint(mobile-horizontal) {
+            max-width: 60vw;
+            max-height: unset;
+        }
+
         @include m.breakpoint(large) {
-            // height: 65vh;
-            align-self: end;
+            max-height: 75vh;           
+            align-self: center;
         }
     }
 }
@@ -75,16 +78,18 @@
 .display-info {
         grid-area: info;
         padding: 1.5rem 0;
+        
         @include m.breakpoint(medium) {
-            padding-top: 2rem;
+            padding-top: 2.25rem;
         }
         @include m.breakpoint(large) {
             padding: 0;
+            min-width: 13vw;    
         }
 
     p {
         display: block;
-        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
         color: white;
         font-size: f.em(13);
     }
@@ -136,6 +141,9 @@
     &__right {
         grid-area: right;
         justify-self: end;
+        // @include m.breakpoint(large) {
+        //     justify-self: center;  
+        // }
         
         &:hover,
         &:focus {
@@ -155,7 +163,7 @@
 
     &__left,
     &__right {     
-        margin-top: 1.5rem;    
+        margin-top: 1.75rem;    
         height: f.rem(32);
         width: f.rem(26);
         display: grid;
@@ -163,7 +171,13 @@
         background-color: rgb(122, 122, 122);
         border-radius: 2px;
         @include m.breakpoint(medium) {
-            margin-top: 2rem;
+            margin-top: 2.5rem;
+        }
+        @include m.breakpoint(large) {
+            margin-top: 0;
+        }
+        @include m.breakpoint(xlarge) {
+            margin-top: 2.5rem;
         }
 
     }

@@ -5,6 +5,9 @@ $breakpoints-up: (
     'large': f.em(900),
     'xlarge': f.em(1440),
 
+    'mobile-horizontal': f.rem(550),
+    // 'tablet-horizontal': f.rem(1200),
+
     'thumbnail-3cols': f.em(750)
 );
 

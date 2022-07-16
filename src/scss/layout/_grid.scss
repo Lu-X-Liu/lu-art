@@ -6,6 +6,7 @@
 .thumbnails {
     width:100%;
     display: grid;
+    place-items: center;
     grid-template-columns:repeat(auto-fit, minmax(f.rem(150), 1fr));
     grid-template-rows: auto auto;
     gap: f.rem(20);
@@ -26,18 +27,25 @@
         max-height: calc(f.rem(300) + 1rem);
         width: 100%;
         height: 100%;
-        justify-self: center;
         transition: v.$transition;
+        display: grid;
+        place-items: center;
 
         &:hover{
             opacity: v.$opacity-I;
             transform: scale(1.01);
         }
     }
+
+    &__img {
+        cursor: pointer;
+    }
+
     &__title {
         display: block;
         font-size: 0.75rem;
         text-transform: capitalize;
+        padding-top: 0.5rem;
 
         @include m.breakpoint(large){
             font-size: 0.9rem;

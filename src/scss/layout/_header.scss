@@ -18,7 +18,7 @@
     align-items: baseline; 
     padding-bottom: 0.5rem;
     border-bottom: 1px solid black;  
-    max-height: f.rem(38);
+    max-height: f.rem(40);
 
     @include m.breakpoint(medium) {
         align-items: center; 
@@ -27,7 +27,7 @@
     &__logo {
             display: block;
             width: f.rem(30);
-            max-width: f.rem(42);
+            max-width: f.rem(43);
 
             @include m.breakpoint(medium) {
                 width: 6vw;
@@ -39,7 +39,7 @@
             }
 
             @include m.breakpoint(xlarge) {
-                width: f.rem(42);
+                width: f.rem(43);
             }
 
             &-icon {

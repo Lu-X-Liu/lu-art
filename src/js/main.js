@@ -10,6 +10,11 @@ const lastImgIndex = thumbImgsArr.length - 1;
 
 const lightBox = document.querySelector('.light-box');
 const displayImg = document.querySelector('.light-box__img-display');
+const displayImgTitle = document.querySelector('.display-info__title');
+const displayImgMaterial = document.querySelector('.display-info__material');
+const displayImgYear = document.querySelector('.display-info__year');
+const displayImgDimension = document.querySelector('.display-info__dimension');
+
 const closeIcon = document.querySelector('.display__cross-icon');
 const arrowBtns = document.querySelectorAll('.display-btn__arrows');
 const leftArrow = document.querySelector('#left');
@@ -42,6 +47,11 @@ function setActiveImg(img) {
     displayImg.srcset = img.dataset.imgSrcset;
     displayImg.src = img.dataset.imgSrc;  
     displayImg.alt = img.alt.replace(' Thumbnail Image', '');
+    displayImgTitle.textContent = displayImg.alt;
+    displayImgMaterial.textContent = img.dataset.imgMaterial;
+    displayImgYear.textContent = img.dataset.imgYear;
+    displayImgDimension.textContent = img.dataset.imgDimension;
+
     
     activeImgIndex = thumbImgsArr.indexOf(img);
     switch (activeImgIndex) {

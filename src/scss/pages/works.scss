@@ -34,7 +34,8 @@
     }
     
     &__wrapper {
-        max-width: 80%;
+        //max-width: 80%;
+        width: 80%;
         display: grid;
         grid-template-areas:
             "cross cross cross"
@@ -55,13 +56,14 @@
             grid-template-columns:1fr 3.5fr 1fr;
             column-gap: 2rem;
             row-gap: 1rem;
+            max-height: f.rem(1000);
         }
     }
     &__img-display {
         display: block;
         grid-area: img;
         justify-self: center;  
-        max-height: 75vh;  
+        max-height: 75vh; 
 
         @include m.breakpoint(mobile-horizontal) {
             max-width: 60vw;

@@ -34,7 +34,6 @@
     }
     
     &__wrapper {
-        //max-width: 80%;
         width: 80%;
         display: grid;
         grid-template-areas:
@@ -46,7 +45,14 @@
         grid-template-rows: auto minmax(1.5rem, 1.5fr) auto auto minmax(1.5rem, 2fr);
         grid-template-columns: auto repeat(2, 17%);
 
+        @include m.breakpoint(mobile-horizontal) {
+            width: 60%;
+            max-height: 75%;
+        }
+
         @include m.breakpoint(large) {
+            width: 80%;
+            //max-height: 75%;
             grid-template-areas: 
                 "cross cross cross"
                 ".... img ...."
@@ -58,6 +64,10 @@
             row-gap: 1rem;
             max-height: f.rem(1000);
         }
+
+        @include m.breakpoint(xlarge) {
+            max-width: f.rem(1200)
+        }
     }
     &__img-display {
         display: block;
@@ -66,7 +76,7 @@
         max-height: 75vh; 
 
         @include m.breakpoint(mobile-horizontal) {
-            max-width: 60vw;
+            max-width: 100%;
             max-height: unset;
         }
 
@@ -80,9 +90,11 @@
 .display-info {
         grid-area: info;
         padding: 1.5rem 0;
+        max-width: 60%;
         
         @include m.breakpoint(medium) {
             padding-top: 2.25rem;
+            max-width: unset;
         }
         @include m.breakpoint(large) {
             padding: 0;

@@ -1,4 +1,8 @@
+@use './functions' as f;
+
 $body-bg-color: #F5F5F5;
 $transition: all 250ms ease-in-out;
 $opacity-I: 0.85;
 $opacity-II: 0.8;
+$boder-radius: 2px;
+$tracking: f.em(1);

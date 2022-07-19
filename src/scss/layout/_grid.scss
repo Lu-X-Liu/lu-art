@@ -46,6 +46,7 @@
         font-size: 0.75rem;
         text-transform: capitalize;
         padding-top: 0.5rem;
+        letter-spacing: v.$tracking;
 
         @include m.breakpoint(large){
             font-size: 0.9rem;

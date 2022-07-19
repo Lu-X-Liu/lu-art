@@ -90,6 +90,7 @@
         grid-area: info;
         padding: 1.5rem 0;
         max-width: 60%;
+        letter-spacing: v.$tracking;
         
         @include m.breakpoint(medium) {
             padding-top: 2.25rem;
@@ -182,7 +183,7 @@
         display: grid;
         place-items: center;
         background-color: rgb(122, 122, 122);
-        border-radius: 2px;
+        border-radius: v.$boder-radius;
         @include m.breakpoint(medium) {
             margin-top: 2.5rem;
         }

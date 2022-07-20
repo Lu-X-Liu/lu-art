@@ -1,0 +1,44 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/functions' as f;
+@use '../abstracts/mixins' as m;
+
+.bio{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    letter-spacing: v.$tracking;
+    
+    &__title {
+        font-weight: 500;
+        font-size: f.em(15);
+        padding-bottom: 1rem;
+        color:  rgb(91, 91, 91);
+    }
+    
+    &__para {
+        font-size: v.$para-font-size;
+        //letter-spacing: v.$tracking;
+        line-height: v.$para-line-height;
+        
+
+        &:not(.bio__para-last){
+            padding-bottom: 0.9rem;    
+        }
+    }
+
+    &__contact {
+        font-weight: 500;
+    }
+
+    &__wrapper {
+        max-width: f.rem(600); 
+    }
+
+    &__img {
+        margin-block: 1.7rem 0.2rem;        
+    }
+
+    &__img-caption {
+        font-size: 0.7em;        
+    }
+}

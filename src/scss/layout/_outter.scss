@@ -13,16 +13,30 @@ body {
 }
 
 .main {
-    position: relative;
-    top: calc(f.rem(54) + 7vw);
+    padding-top: calc(f.rem(54) + 7vw);
     padding-bottom: calc(f.rem(59.25) + 7vw);
 
     @include m.breakpoint(medium) {
-        top: calc(f.rem(54) + 7vh);
+        padding-top: calc(f.rem(54) + 7vh);
         padding-bottom: calc(f.rem(59.25) + 7vh);
     }
     @include m.breakpoint(large) {
-        top: calc(f.rem(54) + 5vh);
+        padding-top: calc(f.rem(54) + 5vh);
         padding-bottom: calc(f.rem(59.25) + 5vh);
     }
 }
+
+// .main {
+//     position: relative;
+//     top: calc(f.rem(54) + 7vw);
+//     padding-bottom: calc(f.rem(59.25) + 7vw);
+
+//     @include m.breakpoint(medium) {
+//         top: calc(f.rem(54) + 7vh);
+//         padding-bottom: calc(f.rem(59.25) + 7vh);
+//     }
+//     @include m.breakpoint(large) {
+//         top: calc(f.rem(54) + 5vh);
+//         padding-bottom: calc(f.rem(59.25) + 5vh);
+//     }
+// }

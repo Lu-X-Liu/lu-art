@@ -6,9 +6,13 @@ const heroImg = document.querySelector('.hero__img');
 //open more info paragraph
 function showMoreInfo() {
     const heroImgBound = heroImg.getBoundingClientRect();
+    const scrollDistance = heroImgBound.bottom;
+    if (heroImgBound.width < 400) {
+        heroImg.style.maxWidth = heroImgBound.width + 'px';
+    };
     moreInfoPara.style.maxWidth = heroImgBound.width + 'px';
     moreInfoPara.style.display = 'block';
-    moreInfoPara.scrollIntoView();
+    window.scrollTo(0, scrollDistance);
 };
 
 moreInfoBtn.addEventListener('click', () => {

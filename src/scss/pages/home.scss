@@ -2,26 +2,25 @@
 @use '../abstracts/functions' as f;
 @use '../abstracts/mixins' as m;
 
+.main.container__wrapper {
+    padding-bottom: f.rem(59.25);
+}
 
 .hero {
     font-size: 0.8rem;
     letter-spacing: v.$tracking;
-        margin: 0 auto;
-        padding-top: 0.5rem;
-        display: flex;
-        justify-content: center;
-        max-height: 75vh;
-        overflow: auto;
-
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    
     &__wrapper {
-        max-width: f.rem(400);
-        margin: 0 auto;        
+        max-width: f.rem(400);      
     }    
     
     &__img{
         cursor: pointer;
-        max-width: f.rem(400);
-        max-height: 65vh;
+        max-width: 100%;
+        max-height: 85%;
     }
 
     &__img-title {
@@ -70,6 +69,7 @@
 
     &__para {
         padding-top: 0.5rem;
+        padding-bottom: 1.5rem;
         display: none;
         line-height: 1.5;
     }

@@ -29,5 +29,9 @@
 
 .fa-brands {
     font-size: f.rem(25);
+
+    &:hover {
+        opacity: 0.7;
+    }
 }
 

@@ -3,7 +3,7 @@
 @use '../abstracts/mixins' as m;
 
 .main.container__wrapper {
-    padding-bottom: f.rem(59.25);
+    padding-bottom: f.rem(59);
 }
 
 .hero {
@@ -29,7 +29,7 @@
     &__img-title {
         padding-top: 0.5rem;
         font-weight: 500;
-        //margin: 0 auto;
+        padding-left: 1.1rem;
     }
     
     &__more-info {
@@ -39,7 +39,6 @@
         color: rgb(0, 45, 208);
         position: relative;
         font-weight: 500;
-        margin-left: 0.5rem;
         transition: v.$transition;
 
         &::after{

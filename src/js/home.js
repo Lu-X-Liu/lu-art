@@ -20,4 +20,4 @@ moreInfoBtn.addEventListener('click', () => {
     moreInfoBtn.blur();
 });
 
-heroImg.addEventListener('click', () => showMoreInfo());
+//heroImg.addEventListener('click', () => showMoreInfo());

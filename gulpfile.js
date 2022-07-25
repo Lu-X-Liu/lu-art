@@ -4,6 +4,7 @@ const sass = require('gulp-sass')(require('sass'));
 const prefix = require('gulp-autoprefixer');
 const cleanCss = require('gulp-clean-css');
 const terser = require('gulp-terser');
+const changed = reauire('gulp-changed');
 const imgResize = require('gulp-image-resize'); 
 const imagemin = require('gulp-imagemin');      
 const webp = require('gulp-webp');

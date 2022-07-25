@@ -92,7 +92,7 @@ function watchTask() {
     watch('./src/scss/**/*.scss', scssTask);
     watch('./**/*.html').on('change', browserSync.reload);
     watch('./src/js/**/*.js', js);
-    watch('./src/imgs/test/*.jpg', resizeThumbnails);
+    watch('./src/imgs/**/*.jpg', resizeThumbnails);
     watch('./src/imgs/**/*.{jpg,png.svg}', optimizeImgs);
     watch('./dist/imgs/**/*.jpg', webpImgs);
 }

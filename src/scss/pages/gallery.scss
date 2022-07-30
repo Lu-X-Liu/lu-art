@@ -74,6 +74,7 @@
         justify-self: center;  
         max-height: 75vh; 
 
+
         @include m.breakpoint(mobile-horizontal) {
             max-width: 100%;
             max-height: unset;
@@ -155,9 +156,6 @@
     &__right {
         grid-area: right;
         justify-self: end;
-        // @include m.breakpoint(large) {
-        //     justify-self: center;  
-        // }
         
         &:hover,
         &:focus {

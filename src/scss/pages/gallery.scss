@@ -65,7 +65,7 @@
         }
 
         @include m.breakpoint(xlarge) {
-            max-width: f.rem(1200)
+            max-width: f.rem(1300);
         }
     }
     &__img-display {
@@ -83,6 +83,10 @@
         @include m.breakpoint(large) {
             max-height: 75vh;           
             align-self: center;
+        }
+
+        @include m.breakpoint(xlarge) {
+            max-height: 65vh;
         }
     }
 }

@@ -7,7 +7,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
     background-color: v.$body-bg-color;
     
     &__frame {
@@ -15,7 +15,7 @@
         justify-content: space-between;
         align-items: center;
         border-top: 1px solid black;  
-        padding-top: 0.5rem;
+        padding-top: 1rem;
     }
     &__link {
         height:fit-content;

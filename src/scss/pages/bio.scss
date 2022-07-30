@@ -10,7 +10,7 @@
     
     &__title {
         font-weight: 500;
-        font-size: f.em(15);
+        font-size: f.em(18);
         padding-bottom: 1rem;
         color:  rgb(91, 91, 91);
     }
@@ -21,7 +21,7 @@
         
 
         &:not(.bio__para-last){
-            padding-bottom: 0.9rem;    
+            padding-bottom: 1rem;    
         }
     }
 

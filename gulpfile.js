@@ -58,7 +58,7 @@ function resizeThumbnails (cb) {
 
 // ]);
 
-// optimize images
+// optimize thumbnail images
 function optimizeImgs(cb) {
     sizes.forEach(function (size, key ) { 
       src('dist/imgs/thumbnails/' + 't-' + key + '/*.jpg', {since: lastRun(optimizeImgs)})
@@ -71,6 +71,20 @@ function optimizeImgs(cb) {
     });
     cb();  
 }
+
+//temporary function optimizing specific images
+const srcDirPath = 'src/imgs/large/';
+const srcImgName = 'lu-self-portrait.jpg';
+const distDirPath = 'dist/imgs/large/';
+
+function optimizeDisplayImgs() {
+    return src(srcDirPath + srcImgName)
+        .pipe(imagemin([
+            imagemin.mozjpeg({quality:80, progressive: true})
+        ]))
+        .pipe(dest(distDirPath));
+}
+
 //create webp
 function webpImgs(cb) {
     sizes.forEach(function (sizes, key) {
@@ -107,3 +121,5 @@ exports.default = series(
 );
 
 exports.watch = watchTask;
+
+exports.large = optimizeDisplayImgs;

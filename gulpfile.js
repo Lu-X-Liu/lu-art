@@ -53,11 +53,6 @@ function resizeThumbnails (cb) {
     cb();
 }
 
-//resize full imgs
-// const fullImgs = new Map([
-
-// ]);
-
 // optimize thumbnail images
 function optimizeImgs(cb) {
     sizes.forEach(function (size, key ) { 
@@ -73,6 +68,12 @@ function optimizeImgs(cb) {
 }
 
 //temporary function optimizing specific images
+
+//resize full imgs
+// const fullImgs = new Map([
+
+// ]);
+
 const srcDirPath = 'src/imgs/large/';
 const srcImgName = 'lu-self-portrait.jpg';
 const distDirPath = 'dist/imgs/large/';

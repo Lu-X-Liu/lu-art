@@ -77,11 +77,11 @@
 
         @include m.breakpoint(mobile-horizontal) {
             max-width: 100%;
-            max-height: unset;
+            max-height: 675px;
         }
 
         @include m.breakpoint(large) {
-            max-height: 75vh;           
+            max-height: 75vh;     
             align-self: center;
         }
 

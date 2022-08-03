@@ -54,128 +54,156 @@ function resizeThumbnails (cb) {
 }
 
 // optimize thumbnail images
-// function optimizeImgs(cb) {
-//     sizes.forEach(function (size, key ) { 
-//       src('dist/imgs/thumbnails/' + 't-' + key + '/*.jpg', {since: lastRun(optimizeImgs)})
-//       .pipe(imagemin([
-//         imagemin.mozjpeg({quality:80, progressive: true}),
-//         imagemin.optipng({optimizationLevel: 2})
-//       ]))
-//       .pipe(dest('dist/imgs/thumbnails/' + 't-' + key + '/'))
-//       .pipe(browserSync.stream());
-//     });
-//     cb();  
-// }
+function optimizeThumbImgs(cb) {
+    sizes.forEach(function (size, key ) { 
+      src('dist/imgs/thumbnails/' + 't-' + key + '/*.jpg', {since: lastRun(optimizeThumbImgs)})
+      .pipe(imagemin([
+        imagemin.mozjpeg({quality:80, progressive: true}),
+        imagemin.optipng({optimizationLevel: 2})
+      ]))
+      .pipe(dest('dist/imgs/thumbnails/' + 't-' + key + '/'))
+      .pipe(browserSync.stream());
+    });
+    cb();  
+}
+
+// create webp for thumbnail images
+function webpThumbImgs(cb) {
+    sizes.forEach(function (sizes, key) {
+        src('dist/imgs/thumbnails/' + 't-' + key + '/*.jpg', {since: lastRun(webpThumbImgs)})
+        .pipe(webp())
+        .pipe(dest('dist/imgs/thumbnails/t-webp/' + 'w-' + key + '/'))
+        .pipe(browserSync.stream());        
+    })
+    cb();
+}
 
 //resize light-box display images
-const displayImgs = {
-    'landscape': {
-        'small': 800,
-        'medium': 1080,
-        'large': 1400,
-        'xlarge': 1655
-    },
-    'portrait': {
-        'small': 800, //width
-        'large' : 1350 //height
-    },
-    'bio': {
-        'small': 860,
-        'large' : 1200
-    }
-};
+
+const displayImgs = {};
+const landscape = new Map([
+    ['small', 800],
+    ['medium', 1080],
+    ['large', 1400],
+    ['xlarge', 1655]
+]);
+const portrait = new Map([
+    ['small', 800],
+    ['large', 1350]
+]);
+const bio = new Map([
+    ['small', 800],
+    ['large', 1200]
+]);
+
+displayImgs['landscape'] = landscape;
+displayImgs['portrait'] = portrait;
+displayImgs['bio'] = bio;
 
 const srcDirPath = 'src/imgs/display/';
 const distDirPath = 'dist/imgs/display/';
 
 function resizeDisplayImgs(cb) {
     for (const item in displayImgs) {
-        const landscapeObj = displayImgs['landscape'];
-        const portraitObj = displayImgs['portrait'];
-        const bioObj = displayImgs['bio'];
-
         if (item === 'landscape') {
-            for (const size in landscapeObj) {
+            displayImgs[item].forEach((size, key) => {
                 src(srcDirPath + 'landscape/*.jpg', {since: lastRun(resizeDisplayImgs)})
                 .pipe(        
                     imgResize({
                     width: size
                 }))
                 .pipe(rename(function (path) {
-                    path.basename += '_' + size;
+                    path.basename += '_' + key;
                 }))
-                .pipe(dest(distDirPath + 'd-' + size + '/' ))
+                .pipe(dest(distDirPath + 'd-' + key + '/' ))
                 .pipe(browserSync.stream());
-            }
-        }
-        else if (item === 'portrait') {
-            for (const size in portraitObj) {
-                if (size === 'small') {
+            })            
+        } else if (item === 'portrait') {
+            displayImgs[item].forEach((size, key) => {
+                if (key === 'small') {
                     src(srcDirPath + 'portrait/*.jpg', {since: lastRun(resizeDisplayImgs)})
-                    .pipe(imgResize({
+                    .pipe(        
+                        imgResize({
                         width: size
-                    })) 
-                    .pipe(rename(function (path) {
-                        path.basename += '_' + size;
                     }))
-                    .pipe(dest(distDirPath + 'd-' + size + '/'))                   
-                } else if (size === 'large') {
+                    .pipe(rename(function (path) {
+                        path.basename += '_' + key;
+                    }))
+                    .pipe(dest(distDirPath + 'd-' + key + '/' )) 
+                    .pipe(browserSync.stream());                   
+                } else if (key === 'large') {
                     src(srcDirPath + 'portrait/*.jpg', {since: lastRun(resizeDisplayImgs)})
-                    .pipe(imgResize({
+                    .pipe(        
+                        imgResize({
                         height: size
-                    })) 
-                    .pipe(rename(function (path) {
-                        path.basename += '_' + size;
                     }))
-                    .pipe(dest(distDirPath + 'd-' + size + '/'))
-                    .pipe(browserSync.stream());
-                } else {
-                    for (const size in bioObj) {
-                        src(srcDirPath + 'bio/*.jpg', {since: lastRun(resizeDisplayImgs)})
-                        .pipe(imgResize({
-                            width: size
-                        }))
-                        .pipe(rename(function (path) {
-                            path.basename += '_' + size;
-                        }))
-                        .pipe(dest(distDirPath + 'd-' + size + '/'))
-                        .pipe(browserSync.stream());
-                    }
+                    .pipe(rename(function (path) {
+                        path.basename += '_' + key;
+                    }))
+                    .pipe(dest(distDirPath + 'd-' + key + '/' )) 
+                    .pipe(browserSync.stream());  
                 }
-            }
+                
+            })
+        } else if (item === 'bio') {
+            displayImgs[item].forEach((size, key) => {
+                src(srcDirPath + 'bio/*.jpg', {since: lastRun(resizeDisplayImgs)})
+                .pipe(        
+                    imgResize({
+                    width: size
+                }))
+                .pipe(rename(function (path) {
+                    path.basename += '_' + key;
+                }))
+                .pipe(dest(distDirPath + 'd-' + key + '/' ))
+                .pipe(browserSync.stream());                
+            })
         }
     }
     cb();
-} 
-
-//optimise all images
-function optimizeImgs() {
-    return  src('dist/imgs/**/*.jpg', {since: lastRun(optimizeImgs)})
-      .pipe(imagemin([
-        imagemin.mozjpeg({quality:80, progressive: true})
-      ]))
-      .pipe(dest('dist/imgs/'))
-      .pipe(browserSync.stream()); 
 }
 
-//create webp
+//optimise display images
+const displayImgSizes = ['d-small', 'd-medium', 'd-large', 'd-xlarge'];
 
-function webpImgs() {
-    return    src('dist/imgs/**/*.jpg', {since: lastRun(webpImgs)})
-        .pipe(webp())
-        .pipe(dest('dist/imgs/'))
-        .pipe(browserSync.stream());        
+function optimizeDisplayImgs(cb) {
+    displayImgSizes.forEach((size) => {
+        src('dist/imgs/display/' + size + '/*.jpg', {since: lastRun(optimizeDisplayImgs)})
+        .pipe(imagemin([
+        imagemin.mozjpeg({quality:75, progressive: true})
+        ]))
+        .pipe(dest('dist/imgs/display/' + size + '/'))
+        .pipe(browserSync.stream());       
+    })
+    cb();
 }
 
-// function webpImgs(cb) {
-//     sizes.forEach(function (sizes, key) {
-//         src('dist/imgs/thumbnails/' + 't-' + key + '/*.jpg', {since: lastRun(webpImgs)})
-//         .pipe(webp())
-//         .pipe(dest('dist/imgs/thumbnails/t-webp/' + 'w-' + key + '/'))
-//         .pipe(browserSync.stream());        
+// const singleImgSizes = ['large', 'xlarge'];
+
+// function optimizeSingleImg(cb) {
+//     singleImgSizes.forEach((size) => {
+//         src('dist/imgs/display/' + 'd-'+ size +'/' + 'the-training-right_' + size +'.jpg')
+//         .pipe(imagemin([
+//         imagemin.mozjpeg({quality: 60, progressive: true})
+//         ]))
+//         .pipe(dest('dist/imgs/display/' +'d-' + size + '/'));    
 //     })
 //     cb();
 // }
+
+//create webp for display images
+
+// function webpDisplayImgs(cb) {
+//     displayImgSizes.forEach((size) => {
+//     src('dist/imgs/display/' + size + '/*.jpg')
+//     .pipe(webp())
+//     .pipe(dest('dist/imgs/display/d-webp/' + size + '/'))
+//     //.pipe(browserSync.stream())
+//      cb();          
+//     })      
+// }
+
+
 //watchtask
 function watchTask() {
     browserSync.init({
@@ -186,9 +214,10 @@ function watchTask() {
     watch('./src/scss/**/*.scss', scssTask);
     watch('./**/*.html').on('change', browserSync.reload);
     watch('./src/js/**/*.js', js);
-    watch('./src/imgs/**/*.jpg', resizeThumbnails);
-    watch('./src/imgs/**/*.{jpg,png.svg}', optimizeImgs);
-    watch('./dist/imgs/**/*.jpg', webpImgs);
+    watch('./src/imgs/thumbnails/*.jpg', resizeThumbnails);
+    watch('./dist/imgs/thumbnails/*.jpg', optimizeThumbImgs);
+    watch('./dist/imgs/**/*.jpg', webpThumbImgs);
+    watch('./src/imgs/display/*.jpg', resizeDisplayImgs);    
 }
 
 //default gulp
@@ -196,9 +225,18 @@ exports.default = series(
     scssTask,
     js,
     resizeThumbnails,
-    optimizeImgs,
-    webpImgs,
+    optimizeThumbImgs,
+    resizeDisplayImgs,   
+    webpThumbImgs,
     watchTask
 );
 
 exports.watch = watchTask;
+
+exports.r = resizeDisplayImgs;
+
+exports.o = optimizeDisplayImgs;
+
+//exports.os = optimizeSingleImg;
+
+exports.w = webpDisplayImgs;

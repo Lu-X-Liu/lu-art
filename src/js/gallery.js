@@ -27,6 +27,7 @@ function hideLightBox() {
 
 function setActiveImg(img) {
     displayImg.srcset = img.dataset.imgSrcset;
+    displayImg.sizes = img.dataset.imgSizes;
     displayImg.src = img.dataset.imgSrc;  
     displayImg.alt = img.alt.replace(' Thumbnail Image', '');
     displayImgTitle.textContent = displayImg.alt;
@@ -59,6 +60,7 @@ function removeBtnFocus(btn) {
 
 function unsetActiveImg() {
     displayImg.srcset = '';
+    displayImg.sizes = '';
     displayImg.src = ''; 
     displayImg.alt = '';   
 };

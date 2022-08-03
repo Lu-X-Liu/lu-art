@@ -34,8 +34,9 @@
     }
 
     &__img {
-        margin-block: 1.7rem 0.2rem;  
+        margin: 1.7rem auto 0.2rem;  
         border: 3px rgb(159, 159, 159) solid;   
+        display: block;
         
         @include m.breakpoint(large) {
             border: 5px rgb(159, 159, 159) solid;   

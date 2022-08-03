@@ -214,20 +214,20 @@ function watchTask() {
     watch('./src/scss/**/*.scss', scssTask);
     watch('./**/*.html').on('change', browserSync.reload);
     watch('./src/js/**/*.js', js);
-    watch('./src/imgs/thumbnails/*.jpg', resizeThumbnails);
-    watch('./dist/imgs/thumbnails/*.jpg', optimizeThumbImgs);
-    watch('./dist/imgs/**/*.jpg', webpThumbImgs);
-    watch('./src/imgs/display/*.jpg', resizeDisplayImgs);    
+    // watch('./src/imgs/thumbnails/*.jpg', resizeThumbnails);
+    // watch('./dist/imgs/thumbnails/*.jpg', optimizeThumbImgs);
+    // watch('./dist/imgs/**/*.jpg', webpThumbImgs);
+    // watch('./src/imgs/display/*.jpg', resizeDisplayImgs);    
 }
 
 //default gulp
 exports.default = series(
     scssTask,
     js,
-    resizeThumbnails,
-    optimizeThumbImgs,
-    resizeDisplayImgs,   
-    webpThumbImgs,
+    // resizeThumbnails,
+    // optimizeThumbImgs,
+    // resizeDisplayImgs,   
+    // webpThumbImgs,
     watchTask
 );
 
@@ -239,4 +239,4 @@ exports.o = optimizeDisplayImgs;
 
 //exports.os = optimizeSingleImg;
 
-exports.w = webpDisplayImgs;
+//exports.w = webpDisplayImgs;

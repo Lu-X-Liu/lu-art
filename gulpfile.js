@@ -163,6 +163,32 @@ function resizeDisplayImgs(cb) {
     cb();
 }
 
+// optimise selected Images
+// function optimizeSelectedImgs(cb) {
+//     for (const item in displayImgs) {
+//         if (item === 'landscape') {
+//             displayImgs[item].forEach((size, key) => {
+//                 if (key === 'large' || key === 'xlarge') {
+//                 src(srcDirPath + 'landscape/shh.jpg', {since: lastRun(resizeDisplayImgs)})
+//                 .pipe(        
+//                     imgResize({
+//                     width: size
+//                 }))
+//                 .pipe(rename(function (path) {
+//                     path.basename += '_' + key;
+//                 }))
+//                 .pipe(dest(distDirPath + 'd-' + key + '/' ))
+//                 .pipe(imagemin([
+//                     imagemin.mozjpeg({quality:60, progressive: true})
+//                     ]))
+//                     .pipe(dest(distDirPath + 'd-' + key + '/'));                    
+//                 }
+//             })            
+//         }
+//     }
+//     cb();
+// }
+
 //optimise display images
 const displayImgSizes = ['d-small', 'd-medium', 'd-large', 'd-xlarge'];
 
@@ -236,6 +262,8 @@ exports.watch = watchTask;
 exports.r = resizeDisplayImgs;
 
 exports.o = optimizeDisplayImgs;
+
+//exports.i = optimizeSelectedImgs;
 
 //exports.os = optimizeSingleImg;
 

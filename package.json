@@ -11,7 +11,7 @@
     "url": "git+https://github.com/Lu-X-Liu/lu-art.git"
   },
   "author": "Xiao Lu Liu",
-  "license": "MIT",
+  "license": "LGPL-2.0-only",
   "bugs": {
     "url": "https://github.com/Lu-X-Liu/lu-art/issues"
   },
